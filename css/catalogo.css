@@ -18,3 +18,11 @@
     max-width: 280px;
     height: 286px;
 }
+
+.zoom{
+    transition: transform 1s;
+}
+
+.zoom:hover{
+   transform: scale(1.25); 
+}
