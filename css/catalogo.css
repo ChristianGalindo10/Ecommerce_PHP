@@ -13,6 +13,14 @@
     margin: 15px;   
 }
 
+.item{
+    position: relative;
+}
+
+.text{
+    position: absolute;
+}
+
 
 #catalogo img {
     width: 100%;
