@@ -10,8 +10,9 @@
 }
 
 #catalogo article{
-    margin: 15px;    
+    margin: 15px;   
 }
+
 
 #catalogo img {
     width: 100%;
@@ -19,10 +20,12 @@
     height: 286px;
 }
 
+
+
 .zoom{
     transition: transform 1s;
 }
 
 .zoom:hover{
-   transform: scale(1.25); 
+   transform: scale(1.05); 
 }
