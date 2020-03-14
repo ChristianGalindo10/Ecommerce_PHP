@@ -69,6 +69,13 @@ footer .contenedor{
     text-decoration: none;
 }
 
+
+.cuerpo {
+   background: white;
+   margin-top: 50px;
+   min-height: 1700px;
+}
+
 @media(min-width:768px){
     .sociales {
         width: auto;
