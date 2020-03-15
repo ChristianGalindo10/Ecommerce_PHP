@@ -13,6 +13,11 @@
     margin: 15px;   
 }
 
+.item2{
+    position: relative;
+    overflow: hidden;
+}
+
 .item{
     position: relative;
     overflow: hidden;
@@ -54,4 +59,16 @@
 
 .item:hover{
     border: 2px solid rgb(0, 0, 0);
+}
+
+.boton-agregar{
+    float: right;
+    cursor: pointer;
+}
+
+.precio{
+    text-align: center;
+    margin-left:38%;
+    color: seagreen;
+    padding-top: 5px;
 }

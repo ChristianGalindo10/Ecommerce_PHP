@@ -22,6 +22,13 @@
         n_username	TEXT NOT NULL,
         o_pass	TEXT NOT NULL
     );
+
+    CREATE TABLE Producto
+        (k_idP	INTEGER PRIMARY KEY AUTOINCREMENT,
+        n_nomProdu	TEXT NOT NULL,
+        v_precio	INTEGER NOT NULL CHECK(v_precio>0),
+        o_img       TEXT NOT NULL
+    );
 EOF;
 
     $ret = $db->exec($sql);

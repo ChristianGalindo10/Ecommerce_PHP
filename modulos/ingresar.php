@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
 $db = new MyDB();
-include "configs/funciones.php";
 
 /*
 $sql =<<<EOF
@@ -20,7 +19,7 @@ $db->close();*/
 
 
 
-	
+
 if(isset($enviar)){
 	
 	$username = clear($username);
@@ -83,27 +82,13 @@ EOF;
 	echo"<script type=\"text/javascript\">alert('Datos correctos');window.location='index.php'</script>"; 
    }
    $db->close();*/
-
+   unset($_SESSION['id']);
 
 }
 
-if(isset($_SESSION['id'])){ // si hay una sesion iniciada
-	
-	?>
-	<a href="?p=agregar_producto">
-		<button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Productos</button></a>
+?>
 
-		<a href="?p=agregar_categoria">
-		<button class="btn btn-info"><i class="fa fa-plus-circle"></i> Agregar Categoria</button></a>
-
-		<a href="?p=manejar_tracking">
-		<button class="btn btn-warning"><i class="fa fa-plus-circle"></i> Manejar Tracking</button></a>
-	<?php
-	unset($_SESSION['id']);
-}else{ // si no hay una sesion iniciada
-	
-	?>
-	<center>
+<center>
 		<form method="post" action="">
 			<div class="centrar_login">
 				<label><h2><i class="fa fa-key"></i> Iniciar Sesión</h2></label>
@@ -121,7 +106,3 @@ if(isset($_SESSION['id'])){ // si hay una sesion iniciada
 			</div>
 		</form>
 	</center>
-	
-	<?php
-}
-?>
