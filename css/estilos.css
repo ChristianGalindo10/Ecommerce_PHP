@@ -3,6 +3,7 @@
 @import url(banner.css);
 @import url(catalogo.css);
 @import url(plataforma.css);
+@import url(login.css);
 
 *{
     margin: 0;

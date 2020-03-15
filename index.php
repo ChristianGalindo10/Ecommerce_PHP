@@ -1,5 +1,8 @@
 <?php
+
 include "configs/config.php";
+
+include "configs/crearBD.php";
 if(!isset($p)){
     $p="inicio";
 }else{
@@ -14,9 +17,15 @@ if(!isset($p)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <!--<link rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="fontawesome/css/all.css">-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="fontawesome/js/all.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <title>Games</title>
 </head>
 
 <body>
