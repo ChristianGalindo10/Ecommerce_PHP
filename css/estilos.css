@@ -4,6 +4,7 @@
 @import url(catalogo.css);
 @import url(plataforma.css);
 @import url(login.css);
+@import url(carrito.css);
 
 *{
     margin: 0;
@@ -55,6 +56,8 @@ footer .contenedor{
     padding-bottom: 25px;
 }
 
+
+
 .copy {
     font-size: 20px;
 }
@@ -74,7 +77,8 @@ footer .contenedor{
 .cuerpo {
    background: white;
    margin-top: 50px;
-   min-height: 1700px;
+   
+   min-height: 700px;
 }
 
 @media(min-width:768px){

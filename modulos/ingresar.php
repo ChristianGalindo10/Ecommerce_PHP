@@ -1,43 +1,13 @@
 <?php
-error_reporting(0);
+
 $db = new MyDB();
-
-/*
-$sql =<<<EOF
-SELECT * from Usuario;
-EOF;
-
-$ret = $db->query($sql);
-while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-   echo "name = ". $row['n_username'] . "\n";
-   // add the BR tag to print the values in a new line    
-   echo "pass = ". $row['o_pass'] ."\n";
-   echo "<br>";
-}
-echo "Operation done successfully\n";
-$db->close();*/
-
-
 
 
 if(isset($enviar)){
 	
 	$username = clear($username);
 	$password = clear($password);
-	/*
-	$q = $mysqli->query("SELECT * FROM admins WHERE username = '$username' AND password = '$password'");
 
-	if(mysqli_num_rows($q)>0){
-		$r = mysqli_fetch_array($q);
-		$_SESSION['id'] = $r['id'];
-		redir("?p=admin");
-	}else{
-		alert("Los datos no son validos");
-		redir("?p=admin");
-	}
-	$username=$_REQUEST['username']; 
-	$password=$_REQUEST['password']; */
-	
 	$sql =<<<EOF
 SELECT * FROM Usuario WHERE n_username = '$username' AND o_pass = '$password';
 EOF;
@@ -47,42 +17,25 @@ $rows = 0;
 
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
    $rows+=1;
-	echo "name = ". $row['n_username'] . "\n";
-   // add the BR tag to print the values in a new line    
-   echo "pass = ". $row['o_pass'] ."\n";
-   echo "<br>";
 }
 
 if($rows>0){
 	$r = $ret->fetchArray(SQLITE3_ASSOC);
-	$_SESSION['id'] = $r['k_id'];
-	echo "bien";
+	$_SESSION['k_id'] = $r['k_id'];
+	if(isset($return)){
+		redir("?p=".$return);
+	}else{
+		redir("./");
+	}
+	
+	
 }else{
-	echo "mal";
+	alert("Los datos no son válidos");
+	redir("?p=ingresar");
+	
 }
 
-echo "Operation done successfully\n".$rows;
 $db->close();
-
-/*
-   $sql =<<<EOF
-      INSERT INTO Usuario (n_username,o_pass)
-      VALUES ('$username', '$password' );
-EOF;
-
-
-   $ret = $db->exec($sql);
-   
-   if(!$ret){
-	//echo $db->lastErrorMsg();
-	//echo '<script language="javascript">alert("Datos erroneos");</script>';
-	echo"<script type=\"text/javascript\">alert('!Datos erroneos, intente nuevamente');</script>"; 
-	//redir("?p=ingresar");
-   } else {
-	echo"<script type=\"text/javascript\">alert('Datos correctos');window.location='index.php'</script>"; 
-   }
-   $db->close();*/
-   unset($_SESSION['id']);
 
 }
 
@@ -105,4 +58,4 @@ EOF;
 				</div>
 			</div>
 		</form>
-	</center>
+</center>

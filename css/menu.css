@@ -2,6 +2,7 @@
     display: none;
 }
 
+
 header label{
     float: right;
     font-size: 28px;
@@ -38,6 +39,7 @@ header label{
 }
 
 @media (min-width:1024px){
+
     .menu {
         position: static;
         width: auto;

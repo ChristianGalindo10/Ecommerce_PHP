@@ -1,7 +1,7 @@
 <?php
 
 include "configs/config.php";
-include "configs/crearBD.php";
+include "configs/abrirBD.php";
 include "configs/funciones.php";
 
 if(!isset($p)){
@@ -9,7 +9,6 @@ if(!isset($p)){
 }else{
     $p = $p;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +39,21 @@ if(!isset($p)){
                 <a href="?p=juegos">Juegos</a>
                 <a href="?p=ofertas">Ofertas</a>
                 <a href="?p=carrito">Carrito</a>
+                <?php
+                if(!isset($_SESSION['k_id'])){
+                ?>
                 <a href="?p=ingresar">Ingresar</a>
+                <?php
+                }
+                ?>
+                <?php
+                if(isset($_SESSION['k_id'])){
+                ?>
+                <a href="#">Usuario: <?=nombre_cliente($_SESSION['k_id'])?></a>
+                <a href="?p=salir" id="ocultar">Salir</a>
+                <?php
+                }
+                ?>
             </nav>
         </div>
     </header>

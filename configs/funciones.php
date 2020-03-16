@@ -1,5 +1,5 @@
 <?php
-
+include "configs/abrirBD";
 /*
 $host_mysql = "localhost";
 $user_mysql = "root";
@@ -27,11 +27,11 @@ function redir($var){
 	<?php
 	die();
 }
-/*
-function alert($txt,$type,$url){
+
+function alert($var){
 
 	//"error", "success" and "info".
-
+	/*
 	if($type==0){
 		$t = "error";
 	}elseif($type==1){
@@ -40,8 +40,13 @@ function alert($txt,$type,$url){
 		$t = "info";
 	}else{
 		$t = "info";
-	}
+	}*/
+	?>
+	<script>
+		alert("<?=$var?>")
+	</script>
 
+	<?php
 	echo '<script>swal({ title: "Alerta", text: "'.$txt.'", icon: "'.$t.'"});';
 	echo '$(".swal-button").click(function(){ window.location="?p='.$url.'"; });';
 	echo '</script>';
@@ -49,20 +54,30 @@ function alert($txt,$type,$url){
 
 function check_user($url){
 
-	if(!isset($_SESSION['id_cliente'])){
-		redir("?p=login&return=$url");
+	if(!isset($_SESSION['k_id'])&& $url=="juegos"){
+		redir("?p=ingresar&return=$url");
 	}else{
-
+		//nombre_cliente($_SESSION['k_id']);
+		
 	}
 
 }
 
 function nombre_cliente($id_cliente){
-	$mysqli = connect();
+	
+	$db = new MyDB();
 
+	$sql =<<<EOF
+SELECT * FROM Usuario WHERE k_id = '$id_cliente';
+EOF;
+
+$ret = $db->query($sql);
+$row = $ret->fetchArray(SQLITE3_ASSOC);
+return $row['n_username'];
+/*
 	$q = $mysqli->query("SELECT * FROM clientes WHERE id = '$id_cliente'");
 	$r = mysqli_fetch_array($q);
-	return $r['name'];
+	return $r['name'];*/
 }
 
 function connect(){
@@ -137,5 +152,5 @@ function estado_pago($estado){
 
 	return $estado;
 
-}*/
+}
 ?>
