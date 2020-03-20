@@ -5,7 +5,7 @@
     {
        function __construct()
        {
-          $this->open('VentasBD.db');
+          $this->open('VentasDB.db');
        }
     }
 

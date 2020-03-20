@@ -16,7 +16,7 @@ if(isset($finalizar)){
 
 		$monto = $rp['v_precio'];
 
-		$db->query("INSERT INTO Producto_Venta (k_idVenta,k_idProdu,q_cantidad,v_monto) VALUES ('$ultima_compra','".$r2['k_idP']."','".$r2['q_cantidad']."','$monto')");
+		$db->query("INSERT INTO Producto_Venta (k_idV,k_idP,q_cantidad,v_montoProdu) VALUES ('$ultima_compra','".$r2['k_idP']."','".$r2['q_cantidad']."','$monto')");
     }
 
     $db->query("DELETE FROM Carro WHERE k_id = '$id_cliente'");
@@ -36,6 +36,7 @@ if(isset($finalizar)){
             <th>Nombre del producto</th>
             <th>Copias</th>
             <th>Precio por unidad</th>
+            <th>Oferta</th>
             <th>Precio Total</th>
         </tr>
     </thead>
@@ -53,7 +54,18 @@ EOF;
         $nombre_producto = $r2['n_nomProdu'];
         $cantidad = $r['q_cantidad'];
         $precio_unidad = $r2['v_precio'];
-        $precio_total = $cantidad*$precio_unidad;
+        $precio_total=0;
+        if($r2['v_oferta']>0){
+            if(strlen($r2['v_oferta'])==1){
+                $desc = "0.0".$r2['v_oferta'];
+            }else{
+                $desc = "0.".$r2['v_oferta'];
+            }
+            $precio_total = $r2['v_precio']-($r2['v_precio']*$desc);
+        }else{
+            $precio_total = $r2['v_precio'];
+        }
+        $precio_total = $cantidad*$precio_total;
         $imagen_producto = $r2['o_img'];
         $monto_total = $monto_total + $precio_total;
         ?>  
@@ -62,6 +74,15 @@ EOF;
                 <td><?=$nombre_producto?></td>
                 <td><?=$cantidad?></td>
                 <td><?=$precio_unidad?> USD</td>
+                <td>
+                    <?php
+                        if($r2['v_oferta']>0){
+                            echo $r2['v_oferta']."% de Descuento";
+                        }else{
+                            echo "Sin descuento";
+                        }
+                    ?>
+                </td>
                 <td><?=$precio_total?> USD</td>
             </tr>
         <?php

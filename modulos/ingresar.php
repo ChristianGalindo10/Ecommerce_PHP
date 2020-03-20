@@ -28,7 +28,6 @@ if($rows>0){
 		redir("./");
 	}
 	
-	
 }else{
 	alert("Los datos no son válidos");
 	redir("?p=ingresar");

@@ -54,7 +54,7 @@ function alert($var){
 
 function check_user($url){
 
-	if(!isset($_SESSION['k_id'])&& $url=="juegos"){
+	if(!isset($_SESSION['k_id'])){
 		redir("?p=ingresar&return=$url");
 	}else{
 		//nombre_cliente($_SESSION['k_id']);

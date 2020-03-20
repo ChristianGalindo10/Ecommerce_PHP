@@ -49,7 +49,7 @@
 
 
 <?php
-check_user("juegos");
+check_user("ofertas");
 //$db = new MyDB();
 
 if(isset($agregar) && isset($cant)){
@@ -75,9 +75,9 @@ EOF;
     redir("?p=juegos");        
 }
 if(isset($cat)){
-    $ret = $db->query("SELECT * FROM Producto WHERE k_idCat='$cat' ORDER BY k_idP ASC");
+    $ret = $db->query("SELECT * FROM Producto WHERE k_idCat='$cat' AND v_oferta>0 ORDER BY k_idP ASC");
 }else{
-    $ret = $db->query("SELECT * FROM Producto ORDER BY k_idP ASC");
+    $ret = $db->query("SELECT * FROM Producto WHERE v_oferta>0 ORDER BY k_idP ASC");
 }
 /*
 $sql =<<<EOF
@@ -99,22 +99,11 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
     }else{
         $precio_total = $row['v_precio'];
     }
-    
     ?>
     <article class="item2">
         <a><img class="zoom" src="img/<?=$row['o_img']?>"></a>
         <h4><?=$row['n_nomProdu']?></h4>
-        <?php
-            if($row['v_oferta']>0){
-                ?>
-                    <del class="precio"><?=$row['v_precio']?> USD</del> <span class="precio"><?=$precio_total?> USD</span>
-                <?php
-            }else{
-                ?>
-                    <span class="precio"><?=$row['v_precio']?> USD</span>
-                <?php
-            }
-        ?>
+        <del class="precio"><?=$row['v_precio']?> USD</del> <span class="precio"><?=$precio_total?> USD</span>
         <button class="boton-agregar" onclick="agregar_carro('<?=$row['k_idP']?>');"><i class="fa fa-shopping-cart"></i></button>
     </article>
     <?php
@@ -128,12 +117,12 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
     function agregar_carro(idp){
         var cant = prompt("¿Qué cantidad desea agregar?",1);
         if(cant.length>0){
-		window.location="?p=juegos&agregar="+idp+"&cant="+cant;
+		window.location="?p=ofertas&agregar="+idp+"&cant="+cant;
 	    }
     }
 
     function redir_cat(){
-        window.location = "?p=juegos&cat="+categoria.value;
+        window.location = "?p=ofertas&cat="+categoria.value;
     }
 </script>
 
