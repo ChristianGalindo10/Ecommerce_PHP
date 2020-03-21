@@ -23,15 +23,15 @@ if(isset($finalizar)){
     }
 
     $db->query("DELETE FROM Carro WHERE k_id = '$id_cliente'");
-    alert("Se ha finalizado la compra");
-    redir("./");
+    alert("Se ha finalizado la compra",1,"inicio");
+    //redir("./");
 }
 
 if(isset($eliminar)){
     //$db = new MyDB();
     $eliminar = clear($eliminar);
 	$db->query("DELETE FROM Carro WHERE k_idP = '$eliminar'");
-	redir("?p=carrito");
+	alert("Producto eliminado",1,'carrito');
 }
 
 if(isset($id) && isset($modificar)){
@@ -39,7 +39,7 @@ if(isset($id) && isset($modificar)){
 	$id = clear($id);
 	$modificar = clear($modificar);
 	$db->query("UPDATE Carro SET q_cantidad = '$modificar' WHERE k_idP = '$id'");
-	alert("Cantidad modificada");
+	alert("Cantidad modificada",1,'carrito');
 	//redir("?p=carrito");
 }
 

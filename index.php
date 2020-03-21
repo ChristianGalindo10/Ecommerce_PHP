@@ -25,6 +25,7 @@ if(!isset($p)){
     <script type="text/javascript" src="fontawesome/js/all.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Games</title>
 </head>
 

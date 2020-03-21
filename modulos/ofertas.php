@@ -71,8 +71,8 @@ if(isset($agregar) && isset($cant)){
 EOF;
     $ret = $db->query($sql);*/
     }
-    alert("Se ha agregado al carro");
-    redir("?p=juegos");        
+    alert("Se ha agregado al carro",1,'juegos');
+    //redir("?p=juegos");        
 }
 if(isset($cat)){
     $ret = $db->query("SELECT * FROM Producto WHERE k_idCat='$cat' AND v_oferta>0 ORDER BY k_idP ASC");

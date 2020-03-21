@@ -1,4 +1,6 @@
-
+<?php
+$db = new MyDB();
+?>
     
     <section id="banner">
         <div class="slider">
@@ -23,6 +25,22 @@
     <section id="catalogo">
         <h3>Lo último de nuestro catálogo</h3>
         <div class="contenedor">
+            <?php
+            $ret = $db->query("SELECT * FROM Producto ORDER BY k_idP ASC");
+            while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+                ?>
+                <article class="item">
+                    <a><img class="zoom" src="img/<?=$row['o_img']?>"></a>
+                    <h4><?=$row['n_nomProdu']?></h4>
+                    <a>
+                        <p class="text"><?=$row['o_desc']?></p>
+                    </a>
+                </article>   
+
+                <?php
+            }
+            ?>
+            <!--
             <article class="item">
                 <a href=""><img class="zoom" src="img/dbzk.jpg"></a>
                 <h4>Dragon Ball Z Kakarot</h4>
@@ -142,7 +160,7 @@
                         laboriosam
                         repellat.</p>
                 </a>
-            </article>
+            </article>-->
         </div>
     </section>
 

@@ -28,10 +28,8 @@ function redir($var){
 	die();
 }
 
-function alert($var){
+function alert($txt,$type,$url){
 
-	//"error", "success" and "info".
-	/*
 	if($type==0){
 		$t = "error";
 	}elseif($type==1){
@@ -40,13 +38,7 @@ function alert($var){
 		$t = "info";
 	}else{
 		$t = "info";
-	}*/
-	?>
-	<script>
-		alert("<?=$var?>")
-	</script>
-
-	<?php
+	}
 	echo '<script>swal({ title: "Alerta", text: "'.$txt.'", icon: "'.$t.'"});';
 	echo '$(".swal-button").click(function(){ window.location="?p='.$url.'"; });';
 	echo '</script>';

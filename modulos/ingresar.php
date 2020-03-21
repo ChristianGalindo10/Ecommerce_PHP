@@ -29,9 +29,7 @@ if($rows>0){
 	}
 	
 }else{
-	alert("Los datos no son válidos");
-	redir("?p=ingresar");
-	
+	alert("Los datos no son válidos",0,'ingresar');
 }
 
 $db->close();
