@@ -34,6 +34,7 @@
 
 <section id="catalogo">
         <div class="contenedor">
+            
             <select id="categoria" onchange="redir_cat()"class="form-control">
                 <option value="">Seleccione una categoria para filtrar</option>
                 <?php
@@ -45,7 +46,7 @@
                         <?php
                     }
                 ?>
-            </select> 
+            </select>
 
 
 <?php

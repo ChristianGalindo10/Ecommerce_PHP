@@ -25,6 +25,7 @@ th,td{
     padding: 20px;
 }
 
+
 thead{
     background-color: #245365a2;
     border-bottom: solid 5px ;
@@ -82,6 +83,4 @@ tr:hover td{
     }
 }
 
-@media(min-width:1024px){
-    
-}
+

@@ -49,7 +49,7 @@ if(!isset($p)){
                 <?php
                 if(isset($_SESSION['k_id'])){
                 ?>
-                <a href="#">Usuario: <?=nombre_cliente($_SESSION['k_id'])?></a>
+                <a href="?p=compras">Usuario: <?=nombre_cliente($_SESSION['k_id'])?></a>
                 <a href="?p=salir" id="ocultar">Salir</a>
                 <?php
                 }

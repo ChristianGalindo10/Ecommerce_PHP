@@ -1,6 +1,9 @@
 <?php
+$db = new MyDB();
+check_user('carrito');
+
 if(isset($finalizar)){
-    $db = new MyDB();
+    //$db = new MyDB();
     $monto = clear($monto_total);
     $id_cliente = clear($_SESSION['k_id']);
     $q = $db->query("INSERT INTO Venta (k_id,f_fecha,v_montoFinal,i_estado) VALUES ('$id_cliente',date('now'),'$monto','0')");
@@ -14,7 +17,7 @@ if(isset($finalizar)){
         $sp = $db->query("SELECT * FROM Producto WHERE k_idP = '".$r2['k_idP']."'");
 		$rp = $sp->fetchArray(SQLITE3_ASSOC);
 
-		$monto = $rp['v_precio'];
+		$monto = $rp['v_precio']*$r2['q_cantidad'];
 
 		$db->query("INSERT INTO Producto_Venta (k_idV,k_idP,q_cantidad,v_montoProdu) VALUES ('$ultima_compra','".$r2['k_idP']."','".$r2['q_cantidad']."','$monto')");
     }
@@ -23,6 +26,23 @@ if(isset($finalizar)){
     alert("Se ha finalizado la compra");
     redir("./");
 }
+
+if(isset($eliminar)){
+    //$db = new MyDB();
+    $eliminar = clear($eliminar);
+	$db->query("DELETE FROM Carro WHERE k_idP = '$eliminar'");
+	redir("?p=carrito");
+}
+
+if(isset($id) && isset($modificar)){
+
+	$id = clear($id);
+	$modificar = clear($modificar);
+	$db->query("UPDATE Carro SET q_cantidad = '$modificar' WHERE k_idP = '$id'");
+	alert("Cantidad modificada");
+	//redir("?p=carrito");
+}
+
 
 ?>
 
@@ -38,10 +58,11 @@ if(isset($finalizar)){
             <th>Precio por unidad</th>
             <th>Oferta</th>
             <th>Precio Total</th>
+            <th>Action</th>
         </tr>
     </thead>
 <?php
-    $db = new MyDB();
+    //$db = new MyDB();
     $id_cliente = clear($_SESSION['k_id']);
     $sql =<<<EOF
     SELECT * FROM Carro WHERE k_id = '$id_cliente';
@@ -70,7 +91,7 @@ EOF;
         $monto_total = $monto_total + $precio_total;
         ?>  
             <tr>
-                <td><img src="img/<?=$imagen_producto?>" class="imagen_carro"/></td>
+                <td><img src="img/<?=$imagen_producto?>" class="imagen_carro"/></img></td>
                 <td><?=$nombre_producto?></td>
                 <td><?=$cantidad?></td>
                 <td><?=$precio_unidad?> USD</td>
@@ -84,6 +105,10 @@ EOF;
                     ?>
                 </td>
                 <td><?=$precio_total?> USD</td>
+                <td>
+                    <a  onclick="modificar(<?=$r['k_idP']?>)" href="#"><i class="fa fa-edit" title="Modificar"></i></a>
+                    <a  href="?p=carrito&eliminar=<?=$r['k_idP']?>"><i class="fa fa-trash" title="Eliminar"></i></a>
+                </td>
             </tr>
         <?php
     }
@@ -96,3 +121,12 @@ EOF;
     <input type="hidden" name="monto_total" value="<?=$monto_total?>"/>
     <button class="btn btn-primary" type="submit" name="finalizar"><i class="fa fa-check"></i>Finalizar compra</button>
 </form>
+
+<script type="text/javascript">
+    function modificar(idc){
+        var new_cant = prompt("¿Cual es la nueva cantidad?");
+        if(new_cant>0){
+            window.location="?p=carrito&id="+idc+"&modificar="+new_cant;
+        }
+    }
+</script>
