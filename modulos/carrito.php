@@ -24,6 +24,7 @@ if(isset($finalizar)){
 
     $db->query("DELETE FROM Carro WHERE k_id = '$id_cliente'");
     alert("Se ha finalizado la compra",1,"inicio");
+    $db->close();
     //redir("./");
 }
 

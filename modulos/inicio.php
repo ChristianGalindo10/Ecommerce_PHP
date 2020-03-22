@@ -36,10 +36,10 @@ $db = new MyDB();
                         <p class="text"><?=$row['o_desc']?></p>
                     </a>
                 </article>   
-
                 <?php
             }
-            ?>
+            $db->close();
+?>
             <!--
             <article class="item">
                 <a href=""><img class="zoom" src="img/dbzk.jpg"></a>

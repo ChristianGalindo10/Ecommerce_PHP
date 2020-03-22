@@ -131,5 +131,7 @@ EOF;
             </tr>
         <?php
     }
-?>
+
 </table>*/
+$db->close();
+?>

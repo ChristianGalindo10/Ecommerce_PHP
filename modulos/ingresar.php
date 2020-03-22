@@ -23,16 +23,17 @@ if($rows>0){
 	$r = $ret->fetchArray(SQLITE3_ASSOC);
 	$_SESSION['k_id'] = $r['k_id'];
 	if(isset($return)){
+		$db->close();
 		redir("?p=".$return);
 	}else{
+		$db->close();
 		redir("./");
 	}
 	
 }else{
+	$db->close();
 	alert("Los datos no son válidos",0,'ingresar');
 }
-
-$db->close();
 
 }
 
@@ -55,4 +56,8 @@ $db->close();
 				</div>
 			</div>
 		</form>
+		<br>
+		<br>
+		<a href="?p=registro">¿Aun no tiene una cuenta?</a>
 </center>
+
