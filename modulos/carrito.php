@@ -2,8 +2,8 @@
 $db = new MyDB();
 check_user('carrito');
 
+//Realizacion de la compra
 if(isset($finalizar)){
-    //$db = new MyDB();
     $monto = clear($monto_total);
     $id_cliente = clear($_SESSION['k_id']);
     $q = $db->query("INSERT INTO Venta (k_id,f_fecha,v_montoFinal,i_estado) VALUES ('$id_cliente',date('now'),'$monto','0')");
@@ -25,28 +25,27 @@ if(isset($finalizar)){
     $db->query("DELETE FROM Carro WHERE k_id = '$id_cliente'");
     alert("Se ha finalizado la compra",1,"inicio");
     $db->close();
-    //redir("./");
 }
 
+//Eliminacion de algun producto del carrito
 if(isset($eliminar)){
-    //$db = new MyDB();
     $eliminar = clear($eliminar);
 	$db->query("DELETE FROM Carro WHERE k_idP = '$eliminar'");
-	alert("Producto eliminado",1,'carrito');
+	alert("Producto eliminado",2,'carrito');
 }
 
+//Modificacion de la cantidad de algun producto en el carrito
 if(isset($id) && isset($modificar)){
-
 	$id = clear($id);
 	$modificar = clear($modificar);
 	$db->query("UPDATE Carro SET q_cantidad = '$modificar' WHERE k_idP = '$id'");
-	alert("Cantidad modificada",1,'carrito');
-	//redir("?p=carrito");
+	alert("Cantidad modificada",2,'carrito');
 }
 
 
 ?>
 
+<!--Creacion de la tabla-->
 <h1 id="titulo-tabla"><i class="fa fa-shopping-cart"></i> Carro de Compras</h1>
 <br><br>
 
@@ -63,7 +62,6 @@ if(isset($id) && isset($modificar)){
         </tr>
     </thead>
 <?php
-    //$db = new MyDB();
     $id_cliente = clear($_SESSION['k_id']);
     $sql =<<<EOF
     SELECT * FROM Carro WHERE k_id = '$id_cliente';
@@ -118,7 +116,7 @@ EOF;
 <br>
 <h2 class="monto">Monto Total: <b class="text-green"><?=$monto_total?> USD</b></h2>
 <br><br>
-<form method="post" action="">
+<form method="POST" action="">
     <input type="hidden" name="monto_total" value="<?=$monto_total?>"/>
     <button class="btn btn-primary" type="submit" name="finalizar"><i class="fa fa-check"></i>Finalizar compra</button>
 </form>

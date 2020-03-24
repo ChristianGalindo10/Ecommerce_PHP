@@ -59,7 +59,7 @@ if(isset($enviar)){
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-submit" name="enviar" type="submit"><i class="fa fa-sign-in"></i> Registrate</button>
+					<button class="btn btn-submit" name="enviar" type="submit"><i class="fas fa-sign-in-alt"></i> Registrate</button>
 				</div>
 			</div>
 		</form>

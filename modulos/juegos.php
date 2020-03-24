@@ -8,20 +8,20 @@
         <div class="contenedor">
             <h2>Juegos multiplataforma</h2>
             <p>¿Cuál es el mejor juego para usted?</p>
-            <a href="#">Leer más</a>
 
         </div>
     </section>
 
     <section id="bienvenidos">
         <h2>Bienvenidos a nuestro catálogo</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur enim et soluta sequi culpa, non
-            blanditiis molestiae obcaecati rem distinctio!</p>
+        <p>En este catálogo encontraras juegos de acción,deportes,mundo abierto entre otros para 
+            diferentes plataformas como Pc,PlayStation,Nintendo Wii U y Xbox</p>
 </section>
 
 
  <?php
     $db = new MyDB();
+    //Filtracion de categoria
     if(isset($cat)){
         
         $sc = $db->query("SELECT * FROM Categoria WHERE k_idCat='$cat'");
@@ -38,7 +38,6 @@
             <select id="categoria" onchange="redir_cat()"class="form-control">
                 <option value="">Seleccione una categoria para filtrar</option>
                 <?php
-                    //$db = new MyDB();
                     $cats = $db->query("SELECT * FROM Categoria ORDER BY n_nomCat ASC");
                     while($rcat = $cats->fetchArray(SQLITE3_ASSOC)){
                         ?>
@@ -51,7 +50,6 @@
 
 <?php
 check_user("juegos");
-//$db = new MyDB();
 
 if(isset($agregar) && isset($cant)){
     $idp = clear($agregar);
@@ -66,26 +64,15 @@ if(isset($agregar) && isset($cant)){
         $ret = $db->query("UPDATE Carro set q_cantidad = q_cantidad + $cant WHERE k_id = '$id_cliente' AND k_idP = '$idp'");
     }else{
         $ret = $db->query("INSERT INTO Carro (k_idP,k_id,q_cantidad) VALUES ($idp,$id_cliente,$cant)");
-        /*
-        $sql =<<<EOF
-    INSERT INTO Carro (k_idP,k_id,q_cantidad) VALUES ($idp,$id_cliente,$cant);
-EOF;
-    $ret = $db->query($sql);*/
     }
-    alert("Se ha agregado al carro",2,'juegos');
-    //redir("?p=juegos");        
+    alert("Se ha agregado al carro",1,'juegos');    
 }
+
 if(isset($cat)){
     $ret = $db->query("SELECT * FROM Producto WHERE k_idCat='$cat' ORDER BY k_idP ASC");
 }else{
     $ret = $db->query("SELECT * FROM Producto ORDER BY k_idP ASC");
 }
-/*
-$sql =<<<EOF
-SELECT * FROM Producto ORDER BY k_idP ASC;
-EOF;
-
-$ret = $db->query($sql);*/
 
 while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
     
@@ -127,7 +114,7 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 
 <script type="text/javascript">
     function agregar_carro(idp){
-        var cant = prompt("¿Qué cantidad desea agregar?",1);
+        var cant = prompt("¿Qué cantidad de copias desea agregar?",1);
         if(cant.length>0){
 		window.location="?p=juegos&agregar="+idp+"&cant="+cant;
 	    }

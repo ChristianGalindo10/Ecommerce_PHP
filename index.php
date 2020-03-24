@@ -1,5 +1,5 @@
+<!--Incluimos la configuracion que se usara de manera global-->
 <?php
-
 include "configs/config.php";
 include "configs/abrirBD.php";
 include "configs/funciones.php";
@@ -19,7 +19,6 @@ if(!isset($p)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <!--<link rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
     <!--<link rel="stylesheet" href="fontawesome/css/all.css">-->
     <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="fontawesome/js/all.js"></script>
@@ -40,26 +39,25 @@ if(!isset($p)){
                 <a href="?p=ofertas">Ofertas</a>
                 <a href="?p=carrito">Carrito</a>
                 <?php
-                if(!isset($_SESSION['k_id'])){
+                    if(!isset($_SESSION['k_id'])){
                 ?>
-                <a href="?p=ingresar">Ingresar</a>
+                        <a href="?p=ingresar">Ingresar</a>
                 <?php
-                }
+                    }
                 ?>
                 <?php
-                if(isset($_SESSION['k_id'])){
+                    if(isset($_SESSION['k_id'])){
                 ?>
-                <a href="?p=compras">Usuario: <?=nombre_cliente($_SESSION['k_id'])?></a>
-                <a href="?p=salir" id="ocultar">Salir</a>
+                        <a href="?p=compras">Usuario: <?=nombre_cliente($_SESSION['k_id'])?></a>
+                        <a href="?p=salir" id="ocultar">Salir</a>
                 <?php
-                }
+                    }
                 ?>
             </nav>
         </div>
     </header>
     <div class="cuerpo">
-        <main>
-            
+        <main>    
             <?php
                 if(file_exists("modulos/".$p.".php")){
                     include "modulos/".$p.".php";

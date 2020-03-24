@@ -2,7 +2,7 @@
 
 $db = new MyDB();
 
-
+//Verificacion si existe el usuario
 if(isset($enviar)){
 	
 	$username = clear($username);
@@ -12,35 +12,35 @@ if(isset($enviar)){
 SELECT * FROM Usuario WHERE n_username = '$username' AND o_pass = '$password';
 EOF;
 
-$ret = $db->query($sql);
-$rows = 0;
+	$ret = $db->query($sql);
+	$rows = 0;
 
-while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-   $rows+=1;
-}
+	while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
+	$rows+=1;
+	}
 
-if($rows>0){
-	$r = $ret->fetchArray(SQLITE3_ASSOC);
-	$_SESSION['k_id'] = $r['k_id'];
-	if(isset($return)){
-		$db->close();
-		redir("?p=".$return);
+	if($rows>0){
+		$r = $ret->fetchArray(SQLITE3_ASSOC);
+		$_SESSION['k_id'] = $r['k_id'];
+		if(isset($return)){
+			$db->close();
+			redir("?p=".$return);
+		}else{
+			$db->close();
+			redir("./");
+		}
+		
 	}else{
 		$db->close();
-		redir("./");
+		alert("Los datos no son válidos",0,'ingresar');
 	}
-	
-}else{
-	$db->close();
-	alert("Los datos no son válidos",0,'ingresar');
-}
 
 }
 
 ?>
 
 <center>
-		<form method="post" action="">
+		<form method="POST" action="">
 			<div class="centrar_login">
 				<label><h2><i class="fa fa-key"></i> Iniciar Sesión</h2></label>
 				<div class="form-group">
@@ -52,7 +52,7 @@ if($rows>0){
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-submit" name="enviar" type="submit"><i class="fa fa-sign-in"></i> Ingresar</button>
+					<button class="btn btn-submit" name="enviar" type="submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
 				</div>
 			</div>
 		</form>
