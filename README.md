@@ -34,4 +34,4 @@ class MyDB extends SQLite3
 
 ## Resultado
 ***
-![Resultado](https://github.com/ChristianGalindo10/GameStore-FRONT/blob/master/Readme_assets/VideoFinal.gif)
+![Resultado](https://github.com/ChristianGalindo10/Ecommerce_PHP/blob/master/img/resultado%20(1).gif)
